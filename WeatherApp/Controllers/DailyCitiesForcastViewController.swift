@@ -19,7 +19,7 @@ class DailyCitiesForcastViewController: UIViewController {
     private var activityIndicator = UIActivityIndicatorView()
     
     //MARK: -Properties
-    private var AllCities = [City]()
+    private var allCities = [City]()
     private var filterdCities = [City](){
         didSet{
             tableView.reloadData()
@@ -33,20 +33,15 @@ class DailyCitiesForcastViewController: UIViewController {
             }
         }
     }
-    private var degriesScale:DegriesScale = .Celsius{
-        didSet{
-            tableView.reloadData()
-        }
-    }
-    
+    private var degriesScale:DegriesScale = .Celsius
+    private  let switchBar = UISwitch()
     //MARK: -LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         configurePage()
-        
-        
+  
         
     }
 
@@ -56,7 +51,7 @@ class DailyCitiesForcastViewController: UIViewController {
     private func configurePage(){
         configureTable()
         addSwitchBarToTheRight()
-        
+        title = "Change to \(DegriesScale.Fahrenhite.rawValue)"
         DispatchQueue.main.async {
             self.readLocalJson()
         }
@@ -75,7 +70,6 @@ class DailyCitiesForcastViewController: UIViewController {
     }
     
     private func addSwitchBarToTheRight(){
-        let switchBar = UISwitch()
         switchBar.addTarget(self, action: #selector(check), for: .touchUpInside)
         let switchDisplay = UIBarButtonItem(customView: switchBar)
         naviBar.rightBarButtonItem = switchDisplay
@@ -85,7 +79,7 @@ class DailyCitiesForcastViewController: UIViewController {
         if let path = Bundle.main.url(forResource: "city.list", withExtension: ".json"){
         do{
             let urlFile = try Data(contentsOf: path, options: .mappedIfSafe)
-            AllCities = try JSONDecoder().decode([City].self, from: urlFile)
+            allCities = try JSONDecoder().decode([City].self, from: urlFile)
             self.parseCitiesJson()
             
         }catch{
@@ -103,7 +97,10 @@ class DailyCitiesForcastViewController: UIViewController {
             let incremented = startIndex + increment
             let endOfRange = incremented > maximumCities ? maximumCities : incremented
             for index in startIndex ..< endOfRange{
-                array.append(AllCities[index].id)
+                if let id  = allCities[index].id{
+                    array.append(id)
+                }
+                
             }
             JsonParser.shared.fecthWeather(with: array, request: .current) { (cities:GroupOfCities) in
                 self.cities += cities.cities
@@ -120,6 +117,7 @@ class DailyCitiesForcastViewController: UIViewController {
             degriesScale = .Celsius
         }
         title = "Change to \(degriesScale.rawValue)"
+        tableView.reloadData()
     }
 }
 
@@ -144,13 +142,35 @@ extension DailyCitiesForcastViewController:UITableViewDataSource{
     
 }
 
+extension DailyCitiesForcastViewController: UITableViewDelegate{
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let city = filterdCities[indexPath.row]
+        performSegue(withIdentifier: WeeklyCityForcastViewController.segueIdentifier, sender: city)
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let VC = segue.destination as? WeeklyCityForcastViewController{
+            if let city = sender as? City{
+                VC.id = city.id
+                VC.cityName = city.name
+                VC.degriesScale = degriesScale
+                VC.swichBarDelegate = self
+            }
+        }
+    }
+}
+
 //MARK: -SearchBar
 extension DailyCitiesForcastViewController: UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if let text = searchBar.text{
             if !text.isEmpty{
                 filterdCities = cities.filter({ (city) -> Bool in
-                    city.name.lowercased().contains(text.lowercased())
+                    if let cityName = city.name?.lowercased(){
+                        return cityName.contains(text.lowercased())
+                    }
+                    return false
                 })
             }else{
                 filterdCities = cities
@@ -158,5 +178,21 @@ extension DailyCitiesForcastViewController: UISearchBarDelegate{
         }
     }
 }
+
+//MARK: -SwichBarDelegate
+extension DailyCitiesForcastViewController :swichBarDelegte{
+    func didCange(with degrieScael: DegriesScale) {
+        self.degriesScale = degrieScael
+        title = "Change to \(degriesScale.rawValue)"
+        if degrieScael == DegriesScale.Celsius {
+            switchBar.isOn = false
+        }else{
+            switchBar.isOn = true
+        }
+    }
+    
+    
+}
+
 
 

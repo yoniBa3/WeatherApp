@@ -98,6 +98,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Cities Weather" id="Wfe-8v-Drv">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="YTE-hP-tPC"/>
                         <barButtonItem key="rightBarButtonItem" id="fuu-1a-cxD">
                             <switch key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="mwf-Bc-9lq">
                                 <rect key="frame" x="343" y="6.5" width="51" height="31"/>
@@ -108,11 +109,114 @@
                     <connections>
                         <outlet property="naviBar" destination="Wfe-8v-Drv" id="8mg-Ko-Xs1"/>
                         <outlet property="tableView" destination="Duf-M3-Y0D" id="vPQ-ta-btg"/>
+                        <segue destination="eFv-2Y-iUg" kind="show" identifier="WeeklyCityForcastSegue" id="fqA-Wz-gXw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="852.17391304347836" y="137.94642857142856"/>
+        </scene>
+        <!--Weekly City Forcast View Controller-->
+        <scene sceneID="9Kr-cl-dmo">
+            <objects>
+                <viewController id="eFv-2Y-iUg" customClass="WeeklyCityForcastViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9qb-lY-Fp9">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ssi-hY-C2U">
+                                <rect key="frame" x="0.0" y="178" width="414" height="684"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="WeeklyCityForcastCell" rowHeight="116" id="eeh-XC-hBE" customClass="WeeklyCityForcastTableViewCell" customModule="WeatherApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="116"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eeh-XC-hBE" id="Th3-Mp-Kdd">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="116"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ocu-bo-1Kh">
+                                                    <rect key="frame" x="20" y="26" width="60" height="64"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="60" id="8js-zI-OeY"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="COD-UL-kXk">
+                                                    <rect key="frame" x="95" y="28" width="294" height="60"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="txG-j0-5cb">
+                                                            <rect key="frame" x="0.0" y="0.0" width="294" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Avrege Temp" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T3y-wa-OVC">
+                                                            <rect key="frame" x="0.0" y="39.5" width="294" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="COD-UL-kXk" secondAttribute="trailing" constant="5" id="8ir-Z2-zb8"/>
+                                                <constraint firstItem="COD-UL-kXk" firstAttribute="centerY" secondItem="Th3-Mp-Kdd" secondAttribute="centerY" id="R6d-ui-5wj"/>
+                                                <constraint firstItem="ocu-bo-1Kh" firstAttribute="leading" secondItem="Th3-Mp-Kdd" secondAttribute="leadingMargin" id="Wbf-Fv-V0B"/>
+                                                <constraint firstItem="ocu-bo-1Kh" firstAttribute="top" secondItem="Th3-Mp-Kdd" secondAttribute="topMargin" constant="15" id="Ydj-8c-IVE"/>
+                                                <constraint firstItem="COD-UL-kXk" firstAttribute="leading" secondItem="ocu-bo-1Kh" secondAttribute="trailing" constant="15" id="iXu-R7-3Rr"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="ocu-bo-1Kh" secondAttribute="bottom" constant="15" id="pH5-nK-VPF"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="avregeTempLabel" destination="T3y-wa-OVC" id="WOv-gR-uE3"/>
+                                            <outlet property="dayLabel" destination="txG-j0-5cb" id="zMx-yQ-F7k"/>
+                                            <outlet property="weatherImageView" destination="ocu-bo-1Kh" id="cX7-qY-Bk1"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="eFv-2Y-iUg" id="BRU-SK-eic"/>
+                                    <outlet property="delegate" destination="eFv-2Y-iUg" id="lm3-8R-vF6"/>
+                                </connections>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City name:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="KZK-Uq-X2C">
+                                <rect key="frame" x="5" y="108" width="404" height="45"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="32"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="KZK-Uq-X2C" firstAttribute="top" secondItem="jQL-wp-MZ7" secondAttribute="top" constant="20" id="OxX-WP-yvz"/>
+                            <constraint firstItem="Ssi-hY-C2U" firstAttribute="top" secondItem="KZK-Uq-X2C" secondAttribute="bottom" constant="25" id="QXQ-p0-viL"/>
+                            <constraint firstItem="Ssi-hY-C2U" firstAttribute="top" secondItem="jQL-wp-MZ7" secondAttribute="top" constant="90" id="iHz-yL-kXk"/>
+                            <constraint firstItem="jQL-wp-MZ7" firstAttribute="trailing" secondItem="Ssi-hY-C2U" secondAttribute="trailing" id="lYx-CL-NXk"/>
+                            <constraint firstItem="Ssi-hY-C2U" firstAttribute="leading" secondItem="jQL-wp-MZ7" secondAttribute="leading" id="u8F-eh-Xvn"/>
+                            <constraint firstItem="jQL-wp-MZ7" firstAttribute="trailing" secondItem="KZK-Uq-X2C" secondAttribute="trailing" constant="5" id="x3W-4T-rWh"/>
+                            <constraint firstItem="jQL-wp-MZ7" firstAttribute="bottom" secondItem="Ssi-hY-C2U" secondAttribute="bottom" id="z5m-0E-v0U"/>
+                            <constraint firstItem="KZK-Uq-X2C" firstAttribute="leading" secondItem="jQL-wp-MZ7" secondAttribute="leading" constant="5" id="zv0-Wk-zg2"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="jQL-wp-MZ7"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="6pQ-t2-Vdr">
+                        <barButtonItem key="rightBarButtonItem" id="vbO-rN-AmI">
+                            <switch key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="zSu-sf-YTE">
+                                <rect key="frame" x="343" y="6.5" width="51" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </switch>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="cityNameLabel" destination="KZK-Uq-X2C" id="ExB-Zj-RND"/>
+                        <outlet property="naviBar" destination="6pQ-t2-Vdr" id="QOj-qJ-e18"/>
+                        <outlet property="tableView" destination="Ssi-hY-C2U" id="oJO-nh-DIR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="P9L-Dh-x2q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1798.5507246376812" y="137.94642857142856"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Vuj-z1-KvQ">

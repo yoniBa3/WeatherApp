@@ -15,8 +15,33 @@ struct GroupOfCities: Codable {
     enum CodingKeys: String ,CodingKey{
         case counter = "cnt"
         case cities = "list"
+        
+        
     }
 }
+
+struct WeeklyCityForcast: Codable {
+    let cod: String?
+    let message: Double?
+    let counter: Int?
+    let list: [City]
+    let city: CityClass
+    
+    enum CodingKeys: String ,CodingKey{
+        case counter = "cnt"
+        case list
+        case cod ,message ,city
+        
+    }
+    
+}
+struct CityClass: Codable {
+    let id: Int?
+    let name: String?
+    let coord: Coord?
+    let country: String?
+}
+
 
 struct City: Codable {
     let coord: Coord?
@@ -28,9 +53,11 @@ struct City: Codable {
     let clouds: Clouds?
     let dt: Int?
     let sys: Sys?
-    let id: Int
-    let name: String
+    let id: Int?
+    let name: String?
     let cod: Int?
+    let dt_txt:String?
+    
 }
 
 // MARK: - Clouds
@@ -60,13 +87,13 @@ struct Main: Codable {
 struct Sys: Codable {
     let type, id: Int?
     let message: Double?
-    let country: String
-    let sunrise, sunset: Int
+    let country: String?
+    let sunrise, sunset: Int?
 }
 
 // MARK: - Weather
 struct Weather: Codable {
-    let id: Int
+    let id: Int?
     let main, weatherDescription, icon: String
 
     enum CodingKeys: String, CodingKey {
@@ -80,4 +107,11 @@ struct Weather: Codable {
 struct Wind: Codable {
     let speed: Double
     let deg: Int?
+}
+
+struct Day{
+    var dayName: String = ""
+    var icon: String = ""
+    var minTemp: Int = 0
+    var maxTemp: Int = 0
 }

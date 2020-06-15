@@ -19,7 +19,10 @@
 		E9437DA82494ECD000144157 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9437DA72494ECD000144157 /* City.swift */; };
 		E9437DAB2494FD6500144157 /* JsonParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9437DAA2494FD6500144157 /* JsonParser.swift */; };
 		E9437DAF24950FD800144157 /* Extensions+ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9437DAE24950FD800144157 /* Extensions+ActivityIndicator.swift */; };
-		E9437DB224952EB000144157 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9437DB124952EB000144157 /* Utils.swift */; };
+		E9437DB224952EB000144157 /* Utils+Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9437DB124952EB000144157 /* Utils+Enum.swift */; };
+		E9437DB62495770E00144157 /* WeeklyCityForcastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9437DB52495770E00144157 /* WeeklyCityForcastViewController.swift */; };
+		E9437DB8249579EA00144157 /* WeeklyCityForcastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9437DB7249579EA00144157 /* WeeklyCityForcastTableViewCell.swift */; };
+		E9437DBD2496CC6300144157 /* protocol+swichDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9437DBC2496CC6300144157 /* protocol+swichDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,7 +40,10 @@
 		E9437DA72494ECD000144157 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		E9437DAA2494FD6500144157 /* JsonParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonParser.swift; sourceTree = "<group>"; };
 		E9437DAE24950FD800144157 /* Extensions+ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+ActivityIndicator.swift"; sourceTree = "<group>"; };
-		E9437DB124952EB000144157 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		E9437DB124952EB000144157 /* Utils+Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Utils+Enum.swift"; sourceTree = "<group>"; };
+		E9437DB52495770E00144157 /* WeeklyCityForcastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyCityForcastViewController.swift; sourceTree = "<group>"; };
+		E9437DB7249579EA00144157 /* WeeklyCityForcastTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyCityForcastTableViewCell.swift; sourceTree = "<group>"; };
+		E9437DBC2496CC6300144157 /* protocol+swichDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "protocol+swichDelegate.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				E9437DA22494EC7400144157 /* DailyCityForCastTableViewCell.swift */,
+				E9437DB7249579EA00144157 /* WeeklyCityForcastTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -112,6 +119,7 @@
 		E9437DA42494ECAE00144157 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E9437DBB2496CC2C00144157 /* Protocols */,
 				E9437DB024952E9C00144157 /* Utils */,
 				E9437DAD24950FB400144157 /* Extensions */,
 				E9437DA92494FD4C00144157 /* Web Service */,
@@ -123,17 +131,9 @@
 		E9437DA52494ECB500144157 /* Struct */ = {
 			isa = PBXGroup;
 			children = (
-				E9437DA62494ECBD00144157 /* City */,
-			);
-			path = Struct;
-			sourceTree = "<group>";
-		};
-		E9437DA62494ECBD00144157 /* City */ = {
-			isa = PBXGroup;
-			children = (
 				E9437DA72494ECD000144157 /* City.swift */,
 			);
-			path = City;
+			path = Struct;
 			sourceTree = "<group>";
 		};
 		E9437DA92494FD4C00144157 /* Web Service */ = {
@@ -148,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				E9437D8A2494E1CB00144157 /* DailyCitiesForcastViewController.swift */,
+				E9437DB52495770E00144157 /* WeeklyCityForcastViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -163,9 +164,17 @@
 		E9437DB024952E9C00144157 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				E9437DB124952EB000144157 /* Utils.swift */,
+				E9437DB124952EB000144157 /* Utils+Enum.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		E9437DBB2496CC2C00144157 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				E9437DBC2496CC6300144157 /* protocol+swichDelegate.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -241,8 +250,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9437D912494E1CB00144157 /* WeatherApp.xcdatamodeld in Sources */,
+				E9437DB62495770E00144157 /* WeeklyCityForcastViewController.swift in Sources */,
+				E9437DB8249579EA00144157 /* WeeklyCityForcastTableViewCell.swift in Sources */,
 				E9437D8B2494E1CB00144157 /* DailyCitiesForcastViewController.swift in Sources */,
-				E9437DB224952EB000144157 /* Utils.swift in Sources */,
+				E9437DB224952EB000144157 /* Utils+Enum.swift in Sources */,
+				E9437DBD2496CC6300144157 /* protocol+swichDelegate.swift in Sources */,
 				E9437DAF24950FD800144157 /* Extensions+ActivityIndicator.swift in Sources */,
 				E9437DA82494ECD000144157 /* City.swift in Sources */,
 				E9437D872494E1CB00144157 /* AppDelegate.swift in Sources */,

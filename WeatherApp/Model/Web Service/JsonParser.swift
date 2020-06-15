@@ -18,7 +18,7 @@ class JsonParser{
     private let URL_FOR_CURRENT_WEATHER_DATA = "https://api.openweathermap.org/data/2.5/group?id={city id}&units=metric"
     
     //MARK: Url for weekly city data
-    private let URL_FOR_WEEKLY_WEATHER_DATA = "https://api.openweathermap.org/data/2.5/forecast?id={city ID}"
+    private let URL_FOR_WEEKLY_WEATHER_DATA = "https://api.openweathermap.org/data/2.5/forecast?id={city id}&units=metric"
     
     
      func fecthWeather<T:Codable>(with citiesId:[Int] ,request:RequestForCall ,complation:@escaping(T) -> ()){
@@ -49,8 +49,8 @@ class JsonParser{
         }
         let citiesIdString = String(citiesId.map({
             String($0)
-            }).joined(separator: ",").dropLast())
-        
+            }).joined(separator: ","))
+
         return urlString.replacingOccurrences(of: "{city id}", with: citiesIdString)+API_KEY
         
     }

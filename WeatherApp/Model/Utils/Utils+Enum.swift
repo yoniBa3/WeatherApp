@@ -12,3 +12,5 @@ enum DegriesScale: String{
     case Fahrenhite = "Fahrenhite"
     case Celsius = "Celsius"
 }
+
+
